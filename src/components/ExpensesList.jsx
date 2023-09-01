@@ -1,8 +1,11 @@
 import styles from './ExpensesList.module.css'
-export const ExpensesList = () => {
+import { ExpensesFilter } from './ExpensesFilter'
+export const ExpensesList = ({ price }) => {
+
     return (<div>
         <div className={styles.container}>
             <div className={styles.content}>
+                <ExpensesFilter />
                 <div>
                     <div>
                         <p>Month</p>
@@ -14,7 +17,7 @@ export const ExpensesList = () => {
                     </div>
                 </div>
                 <div>
-                    <p>$Price</p>
+                    <p>${price}</p>
                 </div>
             </div>
         </div>

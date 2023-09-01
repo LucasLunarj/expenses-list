@@ -1,6 +1,7 @@
 import { useState } from "react"
 
-export const AddExpenses = () => {
+export const AddExpenses = ({ getExpensesData }) => {
+
     const [addTittle, setAddTittle] = useState('');
     const [addPrice, setAddPrice] = useState('');
     const [addDate, setAddDate] = useState('')
@@ -9,16 +10,18 @@ export const AddExpenses = () => {
 
     const handleTitle = (e) => setAddTittle(e.target.value)
     const handlePrice = (e) => setAddPrice(e.target.value)
-    const handleDate = (e) => setAddDate(new Date(e.target.value))
+    const handleDate = (e) => setAddDate(e.target.value)
 
     function handleGatherAllData(event) {
         event.preventDefault()
         console.log('clicou!')
-        setAllData(...allData, { title: addTittle, price: addPrice })
+        setAllData([...allData, { title: addTittle, price: addPrice, date: addDate }])
+        setAddTittle('')
+        setAddPrice('')
+        setAddDate('')
     }
 
-    console.log(allData, addDate)
-
+    getExpensesData(allData)
     return (
         <div>
             <form onSubmit={handleGatherAllData} action="">
